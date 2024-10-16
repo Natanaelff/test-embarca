@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# This script updates your development environment by installing dependencies,
+# migrating the database, clearing old logs, and restarting the server.
+
 require 'fileutils'
-include FileUtils
 
 # path to your application root.
 APP_ROOT = File.expand_path('..', __dir__)
@@ -9,7 +13,7 @@ def system!(*args)
   system(*args) || abort("\n== Command #{args} failed ==")
 end
 
-chdir APP_ROOT do
+FileUtils.chdir(APP_ROOT) do
   # This script is a way to update your development environment automatically.
   # Add necessary update steps to this file.
 

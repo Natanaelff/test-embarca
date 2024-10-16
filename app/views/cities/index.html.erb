@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscar Cidades</title>
+
+  <%= stylesheet_link_tag 'cities', media: 'all' %>
+  <script>
+    async function searchCities() {
+      const state = document.getElementById('state').value;
+      const namePart = document.getElementById('namePart').value;
+
+      const response = await fetch(`/cities/search?state=${state}&name=${namePart}`);
+      const cities = await response.json();
+
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = '';
+
+      if (cities.length === 0) {
+        resultsDiv.innerHTML = '<p>Nenhuma cidade encontrada.</p>';
+      } else {
+        cities.forEach(city => {
+          resultsDiv.innerHTML += `<div class="city">${city.name}</div>`;
+        });
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Buscar Cidades</h1>
+    <label for="state">Estado:</label>
+    <select id="state">
+      <option value="">Selecione um estado</option>
+      <option value="1">Paraná</option>
+      <option value="2">Santa Catarina</option>
+      <option value="3">Rio Grande do Sul</option>
+    </select>
+
+    <label for="namePart">Parte do Nome:</label>
+    <input class="input-box" type="text" id="namePart" placeholder="Digite parte do nome" />
+
+    <button onclick="searchCities()">Buscar</button>
+
+    <div id="results"></div>
+  </div>
+</body>
+</html>

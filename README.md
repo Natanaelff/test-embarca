@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Como rodar a aplicação
 
-Things you may want to cover:
+1. Instale o Docker e o Docker Compose.
+2. Rode `docker-compose build` para construir os containers.
+3. Rode `docker-compose up` para iniciar a aplicação.
+4. Rode `docker-compose run web rake db:create` para criar o banco de dados
+5. Rode `docker-compose run web rake db:migrate` para fazer as migrações da tabela do banco de dados
+6. Rode `docker-compose run web rake db:seed` para criar os dados fake para o banco de dados
+7. Acesse `http://localhost:3000` no seu navegador.
 
-* Ruby version
+## Como rodar a suíte de testes
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Rode `docker-compose run web rspec` para rodar os testes.
